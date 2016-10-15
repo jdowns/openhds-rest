@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Configuration
-@PropertySource("classpath:error-log.properties")
+@PropertySource("classpath:errorLog.properties")
 public class ErrorLogProperties {
 
     @Value("${email.sendOnCreate}")

@@ -55,24 +55,26 @@ public class OpenHdsRestApplication {
     public CommandLineRunner initWithSampleData(MasterDataGenerator masterDataGenerator,
                                                 Environment environment) {
         return (args) -> {
-            if (!environment.containsProperty(SAMPLE_DATA_SIZE_PROPERTY)) {
-                // start normally
-                // TODO: create default user on first time startup?
-                return;
-            }
+            masterDataGenerator.generateData(2);
 
-            int size = environment.getProperty(SAMPLE_DATA_SIZE_PROPERTY, Integer.class);
-            if (size >= 0) {
-                // start with sample data
-                masterDataGenerator.generateData(size);
-            }
+//            if (!environment.containsProperty(SAMPLE_DATA_SIZE_PROPERTY)) {
+//                // start normally
+//                // TODO: create default user on first time startup?
+//                return;
+//            }
+//
+//            int size = environment.getProperty(SAMPLE_DATA_SIZE_PROPERTY, Integer.class);
+//            if (size >= 0) {
+//                // start with sample data
+//                masterDataGenerator.generateData(size);
+//            }
         };
     }
 
     @Bean(name = "projectCodeMap")
     public YamlMapFactoryBean yamlMapFactoryBean() {
         YamlMapFactoryBean yamlMapFactoryBean = new YamlMapFactoryBean();
-        yamlMapFactoryBean.setResources(new ClassPathResource("project-codes.yml"));
+        yamlMapFactoryBean.setResources(new ClassPathResource("projectCodes.yml"));
         return yamlMapFactoryBean;
     }
 
